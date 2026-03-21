@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LibrarianController">
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #2c3e50;">
+            <padding><Insets bottom="15" left="20" right="20" top="15" /></padding>
+            <Label text="HỆ THỐNG QUẢN TRỊ THƯ VIỆN" textFill="WHITE">
+                <font><Font name="System Bold" size="20.0" /></font>
+            </Label>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Quản lý Kho Sách">
+                    <BorderPane>
+                        <left>
+                            <VBox prefWidth="280.0" spacing="15.0" style="-fx-background-color: #ecf0f1;">
+                                <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+                                <Label style="-fx-font-weight: bold;" text="THÔNG TIN SÁCH" />
+                                <TextField fx:id="txtBookId" prefHeight="30.0" promptText="ID Sách" />
+                                <TextField fx:id="txtTitle" prefHeight="30.0" promptText="Tiêu đề" />
+                                <TextField fx:id="txtAuthor" prefHeight="30.0" promptText="Tác giả" />
+                                <TextField fx:id="txtQuantity" prefHeight="30.0" promptText="Số lượng" />
+                                <Separator />
+                                <Button alignment="CENTER" onAction="#addBookAction" prefWidth="240.0" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Thêm Sách">
+                           <font>
+                              <Font name="Arial Bold" size="13.0" />
+                           </font></Button>
+                                <Button onAction="#resetFormAction" prefWidth="240.0" text=" Làm mới form điền thông tin">
+                           <font>
+                              <Font name="Arial Italic" size="12.0" />
+                           </font></Button>
+                                <Button onAction="#deleteBookAction" prefWidth="240.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" text="Xóa Sách Chọn" />
+                            </VBox>
+                        </left>
+                        <center>
+                            <TableView fx:id="tblBooks">
+                                <columns>
+                                    <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+                                    <TableColumn fx:id="colTitle" prefWidth="250" text="Tiêu đề" />
+                                    <TableColumn fx:id="colAuthor" prefWidth="200" text="Tác giả" />
+                                    <TableColumn fx:id="colQuantity" prefWidth="100" text="Số lượng" />
+                                </columns>
+                                <BorderPane.margin><Insets bottom="10" left="10" right="10" top="10" /></BorderPane.margin>
+                            </TableView>
+                        </center>
+                    </BorderPane>
+                </Tab>
+
+                <Tab onSelectionChanged="#loadHistoryData" text="Thống kê &amp; Trả sách">
+                    <BorderPane>
+                        <top>
+                            <HBox alignment="CENTER_LEFT" spacing="30" style="-fx-background-color: #f8f9fa; -fx-padding: 15;">
+                                <Label fx:id="lblTotalLoaned" style="-fx-font-weight: bold; -fx-text-fill: #e67e22; -fx-font-size: 14px;" text="Sách đang được mượn: 0" />
+                                <Button onAction="#loadHistoryData" text="Làm mới dữ liệu" />
+                            </HBox>
+                        </top>
+                        <center>
+                            <TableView fx:id="tblHistory">
+                                <columns>
+                                    <TableColumn fx:id="colHistoryUser" prefWidth="150" text="Người mượn" />
+                                    <TableColumn fx:id="colHistoryBook" prefWidth="250" text="Tên sách" />
+                                    <TableColumn fx:id="colHistoryDate" prefWidth="120" text="Ngày mượn" />
+                                    <TableColumn fx:id="colHistoryStatus" prefWidth="120" text="Trạng thái" />
+                                </columns>
+                                <BorderPane.margin><Insets bottom="10" left="10" right="10" top="10" /></BorderPane.margin>
+                            </TableView>
+                        </center>
+                        <bottom>
+                            <HBox alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+                                <Button onAction="#handleReturnBook" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="XÁC NHẬN TRẢ SÁCH" />
+                            </HBox>
+                        </bottom>
+                    </BorderPane>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

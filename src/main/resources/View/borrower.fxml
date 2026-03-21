@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="500.0" prefWidth="750.0" spacing="15.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BorrowerController">
+    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+    <Label text="SÁCH CÓ THỂ MƯỢN">
+        <font><Font name="System Bold" size="20.0" /></font>
+    </Label>
+    <TableView fx:id="tableBooks" prefHeight="375.0" prefWidth="643.0" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="114.0" text="ID" />
+            <TableColumn fx:id="colTitle" minWidth="500.0" prefWidth="428.0" text="Tên sách" />
+            <TableColumn fx:id="colAuthor" prefWidth="222.0" text="Tác giả" />
+            <TableColumn fx:id="colAvailable" prefWidth="100" text="Còn lại" />
+        </columns>
+    </TableView>
+    <HBox alignment="CENTER_RIGHT">
+        <Button onAction="#borrowBook" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold;" text="XÁC NHẬN MƯỢN" />
+    </HBox>
+</VBox>

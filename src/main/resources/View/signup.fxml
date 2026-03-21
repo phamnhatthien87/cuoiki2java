@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15.0" prefWidth="400.0" prefHeight="450.0"
+      style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpController">
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+    <children>
+        <Label text="TẠO TÀI KHOẢN MỚI" textFill="#27ae60">
+            <font><Font name="System Bold" size="22.0" /></font>
+        </Label>
+
+        <VBox spacing="10.0" maxWidth="300.0">
+            <Label text="Tên đăng nhập:" />
+            <TextField fx:id="txtNewUser" prefHeight="35.0" promptText="Nhập tên tài khoản..." />
+
+            <Label text="Mật khẩu:" />
+            <PasswordField fx:id="txtNewPass" prefHeight="35.0" promptText="Nhập mật khẩu..." />
+
+            <Label text="Xác nhận mật khẩu:" />
+            <PasswordField fx:id="txtConfirmPass" prefHeight="35.0" promptText="Nhập lại mật khẩu..." />
+        </VBox>
+
+        <Button text="ĐĂNG KÝ" onAction="#handleSignUp" prefWidth="300.0" prefHeight="40.0"
+                style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+        <Hyperlink text="Quay lại Đăng nhập" onAction="#backToLogin" />
+    </children>
+</VBox>
