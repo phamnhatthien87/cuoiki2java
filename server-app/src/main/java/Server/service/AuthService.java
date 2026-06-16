@@ -17,7 +17,7 @@ public class AuthService {
         return userDAO.login(username.trim(), password);
     }
 
-    public boolean register(String username, String password) {
+    public boolean register(String username, String password, String email) {
         if (isBlank(username) || isBlank(password)) {
             return false;
         }
@@ -26,22 +26,22 @@ public class AuthService {
             return false;
         }
 
-        return userDAO.register(username.trim(), password);
+        return userDAO.register(username.trim(), password, email);
     }
 
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
-    public boolean createUser(String username, String password, String role) {
+    public boolean createUser(String username, String password, String role, String email) {
         if (!isValidUserInput(username, role) || isBlank(password) || password.length() < 8) {
             return false;
         }
 
-        return userDAO.createUser(username.trim(), password, normalizeRole(role));
+        return userDAO.createUser(username.trim(), password, normalizeRole(role), email);
     }
 
-    public boolean updateUser(int id, String username, String password, String role) {
+    public boolean updateUser(int id, String username, String password, String role, String email) {
         if (id <= 0 || !isValidUserInput(username, role)) {
             return false;
         }
@@ -50,7 +50,7 @@ public class AuthService {
             return false;
         }
 
-        return userDAO.updateUser(id, username.trim(), password, normalizeRole(role));
+        return userDAO.updateUser(id, username.trim(), password, normalizeRole(role), email);
     }
 
     public boolean deleteUser(int id) {

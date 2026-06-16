@@ -122,6 +122,7 @@
                         <TextField fx:id="txtUserId" editable="false" promptText="Ma tai khoan" />
                         <TextField fx:id="txtUsername" promptText="Ten dang nhap" />
                         <PasswordField fx:id="txtUserPassword" promptText="Mat khau moi hoac de trong" />
+                        <TextField fx:id="txtUserEmail" promptText="Email (se duoc ma hoa AES)" />
                         <ComboBox fx:id="cbUserRole" maxWidth="Infinity" promptText="Vai tro" />
                         <HBox spacing="8.0">
                             <Button maxWidth="Infinity" onAction="#addUserAction" style="-fx-background-color: #10B981; -fx-text-fill: white; -fx-font-weight: bold;" text="Them" HBox.hgrow="ALWAYS" />
@@ -134,9 +135,10 @@
                     <VBox style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #E5E7EB;" HBox.hgrow="ALWAYS">
                         <TableView fx:id="tblUsers" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="colUserId" prefWidth="80.0" text="ID" />
-                                <TableColumn fx:id="colUsername" prefWidth="300.0" text="Ten dang nhap" />
-                                <TableColumn fx:id="colUserRole" prefWidth="180.0" text="Vai tro" />
+                                <TableColumn fx:id="colUserId" prefWidth="60.0" text="ID" />
+                                <TableColumn fx:id="colUsername" prefWidth="200.0" text="Ten dang nhap" />
+                                <TableColumn fx:id="colUserEmail" prefWidth="240.0" text="Email (ma hoa AES)" />
+                                <TableColumn fx:id="colUserRole" prefWidth="140.0" text="Vai tro" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

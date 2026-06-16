@@ -30,8 +30,10 @@ GO
 CREATE TABLE Users (
     id INT IDENTITY(1,1) PRIMARY KEY,
     username NVARCHAR(50) NOT NULL UNIQUE,
-    password NVARCHAR(100) NOT NULL,
+    password NVARCHAR(255) NOT NULL,
     role NVARCHAR(20) NOT NULL,
+    -- Email duoc ma hoa AES 2 chieu truoc khi luu, giai ma khi hien thi
+    email NVARCHAR(500) NULL,
     CONSTRAINT CK_Users_Role CHECK (role IN (N'librarian', N'borrower'))
 );
 
@@ -86,13 +88,15 @@ JOIN Users U ON Br.userId = U.id
 JOIN Books B ON Br.bookId = B.id;
 GO
 
-INSERT INTO Users (username, password, role) VALUES
-(N'admin', N'PBKDF2$65536$SqJhGU4LiUttPCzMe5iyYw$0AMLJe7z8aUS4kVO/DgvGQ', N'librarian'),
-(N'nthien07', N'PBKDF2$65536$LDNblNI3Hu1r0pTW8TR59Q$qWHZi//Soxey31B5j7hvJw', N'borrower'),
-(N'nhathien', N'PBKDF2$65536$eYfhq1tRcQClA3wTVzJIyA$gKFGllePkBzquZv75O0nmA', N'borrower'),
-(N'admin01', N'PBKDF2$65536$GhRb3apsGihXf2UaS19A5A$K7ulKvwkV4kJJQr4ozw7GA', N'librarian'),
-(N'admin02', N'PBKDF2$65536$bUoKiExpru95igmSycA5bg$j3kaVGpiP9a7UrfBEcuj2A', N'librarian'),
-(N'admin03', N'PBKDF2$65536$ryLqTOt2VPatUBy979WZNA$F1VVCbjc1V0ZYnZSBtoThw', N'librarian');
+-- Mat khau: admin=Admin@123456, nthien07=Nthien@2024abc, nhathien=Nhathien@2024, admin01/02/03=Admin@123456
+-- Email cot duoi da duoc ma hoa AES voi key 'LibraryApp@2025!' - chi doc duoc qua AESUtil.decrypt()
+INSERT INTO Users (username, password, role, email) VALUES
+(N'admin',    N'PBKDF2$65536$SqJhGU4LiUttPCzMe5iyYw$0AMLJe7z8aUS4kVO/DgvGQ', N'librarian', N'q/4nLvCDWU+8wqTrEWCb3T4OJwwERs0OzXm3NLvPFKs='),
+(N'nthien07', N'PBKDF2$65536$LDNblNI3Hu1r0pTW8TR59Q$qWHZi//Soxey31B5j7hvJw', N'borrower',  N'C9Cx/4C3dj1d2h0XgpZM0eNtnPFv2b73FdQZV7WUQb0='),
+(N'nhathien', N'PBKDF2$65536$eYfhq1tRcQClA3wTVzJIyA$gKFGllePkBzquZv75O0nmA', N'borrower',  N'C9Cx/4C3dj1d2h0XgpZM0eNtnPFv2b73FdQZV7WUQb0='),
+(N'admin01',  N'PBKDF2$65536$GhRb3apsGihXf2UaS19A5A$K7ulKvwkV4kJJQr4ozw7GA', N'librarian', NULL),
+(N'admin02',  N'PBKDF2$65536$bUoKiExpru95igmSycA5bg$j3kaVGpiP9a7UrfBEcuj2A', N'librarian', NULL),
+(N'admin03',  N'PBKDF2$65536$ryLqTOt2VPatUBy979WZNA$F1VVCbjc1V0ZYnZSBtoThw', N'librarian', NULL);
 
 INSERT INTO Categories (categoryName) VALUES
 (N'Công nghệ thông tin'),

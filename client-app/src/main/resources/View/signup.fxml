@@ -54,6 +54,14 @@
                     <PasswordField fx:id="txtConfirmPass" prefHeight="45.0" promptText="••••••••"
                                    style="-fx-background-color: #F1F5F9; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-padding: 0 15;" />
                 </VBox>
+
+                <VBox spacing="8.0">
+                    <Label text="Email" textFill="#475569">
+                        <font><Font name="System Bold" size="13.0" /></font>
+                    </Label>
+                    <TextField fx:id="txtEmail" prefHeight="45.0" promptText="example@email.com"
+                               style="-fx-background-color: #F1F5F9; -fx-background-radius: 10; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-padding: 0 15;" />
+                </VBox>
             </VBox>
 
             <!-- Nút Thao Tác -->

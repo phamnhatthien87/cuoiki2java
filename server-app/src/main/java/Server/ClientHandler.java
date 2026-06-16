@@ -57,7 +57,8 @@ public class ClientHandler implements Runnable {
                 case "REGISTER":
                     return Response.ok(server.register(
                             (String) request.getParam(0),
-                            (String) request.getParam(1)
+                            (String) request.getParam(1),
+                            (String) request.getParam(2)  // email
                     ));
 
                 case "GET_ALL_USERS":
@@ -67,7 +68,8 @@ public class ClientHandler implements Runnable {
                     return Response.ok(server.createUser(
                             (String) request.getParam(0),
                             (String) request.getParam(1),
-                            (String) request.getParam(2)
+                            (String) request.getParam(2),
+                            (String) request.getParam(3)  // email
                     ));
 
                 case "UPDATE_USER":
@@ -75,7 +77,8 @@ public class ClientHandler implements Runnable {
                             (Integer) request.getParam(0),
                             (String) request.getParam(1),
                             (String) request.getParam(2),
-                            (String) request.getParam(3)
+                            (String) request.getParam(3),
+                            (String) request.getParam(4)  // email
                     ));
 
                 case "DELETE_USER":

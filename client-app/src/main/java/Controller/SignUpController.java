@@ -19,18 +19,20 @@ public class SignUpController {
     @FXML private TextField txtNewUser;
     @FXML private PasswordField txtNewPass;
     @FXML private PasswordField txtConfirmPass;
+    @FXML private TextField txtEmail;
 
     @FXML
     private void handleSignUp() {
         String username = txtNewUser.getText().trim();
         String password = txtNewPass.getText().trim();
         String confirmPassword = txtConfirmPass.getText().trim();
+        String email = txtEmail.getText().trim();
 
-        if (!isValidInput(username, password, confirmPassword)) {
+        if (!isValidInput(username, password, confirmPassword, email)) {
             return;
         }
 
-        if (client.register(username, password)) {
+        if (client.register(username, password, email.isEmpty() ? null : email)) {
             showAlert(Alert.AlertType.INFORMATION, "Thanh cong", "Dang ky thanh cong.");
             backToLogin();
         } else {
@@ -51,7 +53,7 @@ public class SignUpController {
         }
     }
 
-    private boolean isValidInput(String username, String password, String confirmPassword) {
+    private boolean isValidInput(String username, String password, String confirmPassword, String email) {
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Loi", "Vui long nhap day du thong tin.");
             return false;
@@ -69,6 +71,12 @@ public class SignUpController {
 
         if (password.length() < 10) {
             showAlert(Alert.AlertType.ERROR, "Loi", "Mat khau phai co it nhat 10 ky tu.");
+            return false;
+        }
+
+        // Kiem tra dinh dang email neu nguoi dung co nhap
+        if (!email.isEmpty() && !email.matches("^[\\w.+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}$")) {
+            showAlert(Alert.AlertType.ERROR, "Loi", "Email khong dung dinh dang.");
             return false;
         }
 

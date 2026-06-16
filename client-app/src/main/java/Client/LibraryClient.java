@@ -36,20 +36,20 @@ public class LibraryClient {
         return (User) send("LOGIN", username, password);
     }
 
-    public boolean register(String username, String password) {
-        return toBoolean(send("REGISTER", username, password));
+    public boolean register(String username, String password, String email) {
+        return toBoolean(send("REGISTER", username, password, email));
     }
 
     public List<User> getAllUsers() {
         return toList(send("GET_ALL_USERS"));
     }
 
-    public boolean createUser(String username, String password, String role) {
-        return toBoolean(send("CREATE_USER", username, password, role));
+    public boolean createUser(String username, String password, String role, String email) {
+        return toBoolean(send("CREATE_USER", username, password, role, email));
     }
 
-    public boolean updateUser(int id, String username, String password, String role) {
-        return toBoolean(send("UPDATE_USER", id, username, password, role));
+    public boolean updateUser(int id, String username, String password, String role, String email) {
+        return toBoolean(send("UPDATE_USER", id, username, password, role, email));
     }
 
     public boolean deleteUser(int id) {

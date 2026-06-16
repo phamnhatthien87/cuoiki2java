@@ -65,10 +65,12 @@ public class LibrarianController {
     @FXML private TextField txtUserId;
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtUserPassword;
+    @FXML private TextField txtUserEmail;
     @FXML private ComboBox<String> cbUserRole;
     @FXML private TableView<User> tblUsers;
     @FXML private TableColumn<User, Integer> colUserId;
     @FXML private TableColumn<User, String> colUsername;
+    @FXML private TableColumn<User, String> colUserEmail;
     @FXML private TableColumn<User, String> colUserRole;
 
     @FXML private TextField txtCategoryId;
@@ -164,6 +166,8 @@ public class LibrarianController {
 
         colUserId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        // Cột Email hiển thị dữ liệu đã được giải mã AES từ server
+        colUserEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colUserRole.setCellValueFactory(new PropertyValueFactory<>("role"));
 
         tblUsers.getSelectionModel().selectedItemProperty().addListener(
@@ -465,6 +469,7 @@ public class LibrarianController {
         txtUserId.setText(String.valueOf(user.getId()));
         txtUsername.setText(user.getUsername());
         txtUserPassword.clear();
+        txtUserEmail.setText(user.getEmail() != null ? user.getEmail() : "");
         cbUserRole.setValue(user.getRole());
     }
 
@@ -473,8 +478,9 @@ public class LibrarianController {
         String username = txtUsername.getText().trim();
         String password = txtUserPassword.getText();
         String role = cbUserRole.getValue();
+        String email = txtUserEmail.getText().trim();
 
-        if (client.createUser(username, password, role)) {
+        if (client.createUser(username, password, role, email.isEmpty() ? null : email)) {
             showAlert(Alert.AlertType.INFORMATION, "Thanh cong", "Da them tai khoan.");
             loadUsers();
             clearUserForm();
@@ -490,8 +496,9 @@ public class LibrarianController {
             String username = txtUsername.getText().trim();
             String password = txtUserPassword.getText();
             String role = cbUserRole.getValue();
+            String email = txtUserEmail.getText().trim();
 
-            if (client.updateUser(id, username, password, role)) {
+            if (client.updateUser(id, username, password, role, email.isEmpty() ? null : email)) {
                 showAlert(Alert.AlertType.INFORMATION, "Thanh cong", "Da cap nhat tai khoan.");
                 loadUsers();
                 clearUserForm();
@@ -535,6 +542,7 @@ public class LibrarianController {
         txtUserId.clear();
         txtUsername.clear();
         txtUserPassword.clear();
+        txtUserEmail.clear();
         cbUserRole.setValue("borrower");
         tblUsers.getSelectionModel().clearSelection();
     }
@@ -747,7 +755,7 @@ public class LibrarianController {
             lblTotalFine.setText("Tong tien phat: " + totalFine + " VND");
         });
     }
-
+    // sử dụng multithread để tránh treo giao diện
     private <T> void runTask(Callable<T> job, Consumer<T> onSuccess) {
         Task<T> task = new Task<>() {
             @Override

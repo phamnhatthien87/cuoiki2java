@@ -34,20 +34,20 @@ public class LibraryServer {
         return authService.login(username, password);
     }
 
-    public boolean register(String username, String password) {
-        return authService.register(username, password);
+    public boolean register(String username, String password, String email) {
+        return authService.register(username, password, email);
     }
 
     public List<User> getAllUsers() {
         return authService.getAllUsers();
     }
 
-    public boolean createUser(String username, String password, String role) {
-        return authService.createUser(username, password, role);
+    public boolean createUser(String username, String password, String role, String email) {
+        return authService.createUser(username, password, role, email);
     }
 
-    public boolean updateUser(int id, String username, String password, String role) {
-        return authService.updateUser(id, username, password, role);
+    public boolean updateUser(int id, String username, String password, String role, String email) {
+        return authService.updateUser(id, username, password, role, email);
     }
 
     public boolean deleteUser(int id) {
