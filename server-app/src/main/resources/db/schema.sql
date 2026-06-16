@@ -88,7 +88,7 @@ JOIN Users U ON Br.userId = U.id
 JOIN Books B ON Br.bookId = B.id;
 GO
 
--- Mat khau: admin=Admin@123456, nthien07=Nthien@2024abc, nhathien=Nhathien@2024, admin01/02/03=Admin@123456
+-- Mat khau: admin=Admin@123456, nthien07= , nhathien=Nhathien@2024, admin01/02/03=Admin@123456
 -- Email cot duoi da duoc ma hoa AES voi key 'LibraryApp@2025!' - chi doc duoc qua AESUtil.decrypt()
 INSERT INTO Users (username, password, role, email) VALUES
 (N'admin',    N'PBKDF2$65536$SqJhGU4LiUttPCzMe5iyYw$0AMLJe7z8aUS4kVO/DgvGQ', N'librarian', N'q/4nLvCDWU+8wqTrEWCb3T4OJwwERs0OzXm3NLvPFKs='),
