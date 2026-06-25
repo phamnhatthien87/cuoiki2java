@@ -89,11 +89,10 @@ JOIN Books B ON Br.bookId = B.id;
 GO
 
 -- Mat khau: admin=Admin@123456, nthien07= , nhathien=Nhathien@2024, admin01/02/03=Admin@123456
--- Email cot duoi da duoc ma hoa AES voi key 'LibraryApp@2025!' - chi doc duoc qua AESUtil.decrypt()
 INSERT INTO Users (username, password, role, email) VALUES
-(N'admin',    N'PBKDF2$65536$SqJhGU4LiUttPCzMe5iyYw$0AMLJe7z8aUS4kVO/DgvGQ', N'librarian', N'q/4nLvCDWU+8wqTrEWCb3T4OJwwERs0OzXm3NLvPFKs='),
-(N'nthien07', N'PBKDF2$65536$LDNblNI3Hu1r0pTW8TR59Q$qWHZi//Soxey31B5j7hvJw', N'borrower',  N'C9Cx/4C3dj1d2h0XgpZM0eNtnPFv2b73FdQZV7WUQb0='),
-(N'nhathien', N'PBKDF2$65536$eYfhq1tRcQClA3wTVzJIyA$gKFGllePkBzquZv75O0nmA', N'borrower',  N'C9Cx/4C3dj1d2h0XgpZM0eNtnPFv2b73FdQZV7WUQb0='),
+(N'admin',    N'PBKDF2$65536$SqJhGU4LiUttPCzMe5iyYw$0AMLJe7z8aUS4kVO/DgvGQ', N'librarian', N'admin@library.com'),
+(N'nthien07', N'PBKDF2$65536$LDNblNI3Hu1r0pTW8TR59Q$qWHZi//Soxey31B5j7hvJw', N'borrower',  N'nthien07@library.com'),
+(N'nhathien', N'PBKDF2$65536$eYfhq1tRcQClA3wTVzJIyA$gKFGllePkBzquZv75O0nmA', N'borrower',  N'nhathien@library.com'),
 (N'admin01',  N'PBKDF2$65536$GhRb3apsGihXf2UaS19A5A$K7ulKvwkV4kJJQr4ozw7GA', N'librarian', NULL),
 (N'admin02',  N'PBKDF2$65536$bUoKiExpru95igmSycA5bg$j3kaVGpiP9a7UrfBEcuj2A', N'librarian', NULL),
 (N'admin03',  N'PBKDF2$65536$ryLqTOt2VPatUBy979WZNA$F1VVCbjc1V0ZYnZSBtoThw', N'librarian', NULL);

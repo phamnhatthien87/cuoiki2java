@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 public class LoginController {
 
     private final LibraryClient client = LibraryClient.getInstance();
-    private static final int MAX_FAILED_ATTEMPTS = 3;
-    private static final int LOCK_SECONDS = 30;
+    private static final int MAX_FAILED_ATTEMPTS = 5;
+    private static final int LOCK_SECONDS = 10;
 
     private int failedAttempts = 0;
     private LocalDateTime lockedUntil;
